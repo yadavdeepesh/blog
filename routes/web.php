@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +19,54 @@ Route::get('/', function () {
 });
 
 // create a route for the home page
-Route::get('/home', function () {
-    return view('home');
+// Route::get('/home', function () {
+//     return view('home');
+// });
+
+// create a route for short way 
+// Route::view('/home', 'home');
+
+// passed the data to the view
+Route::get('/about', function () {
+    return view('about');
+}
+);
+
+// passed the data to the view route with parameter
+Route::get('/about/{name}', function ($name) {
+    echo "My name is: " . $name;
+    return view('about', ['name' => $name]);
 });
+
+// redirect the url
+Route::redirect('/home', '/');
+
+// calling controller function in route
+Route::get('/user', [UserController::class, 'getUser']);
+
+Route::get('/aboutuser', [UserController::class, 'aboutUser']);
+
+Route::get('/user/{name}', [UserController::class, 'getName']);
+
+Route::get('/userpage', [UserController::class, 'getUserName']);
+
+Route::get('/userpage/{name}', [UserController::class, 'getName']);
+
+Route::get('/admin/login', [UserController::class, 'adminLogin']);
+
+Route::get('/test', [TestController::class, 'testView']);
+
+// call the function of testView in the UserController and return the view test.blade.php
+
+Route::get('/test-view', [TestController::class, 'testView']);
+
+Route::get('/home-page', [TestController::class, 'homePage']);
+
+Route::get('/about-page/{name}', [TestController::class, 'aboutPage']);
+
+Route::get('/admin-login', [TestController::class, 'adminLogin']);
+
+Route::get('/admin-login-view/{name}', function ($name) {
+    return view('admin.login', ['name' => $name]);
+});// directly return the view without calling the controller function
+
