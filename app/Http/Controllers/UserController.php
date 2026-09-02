@@ -30,10 +30,15 @@ class UserController extends Controller
 
     function addUser(Request $request){
        echo "Add User Function";
-       echo "<br>";
-        echo "Name ".$request->username;
-        echo "Email ".$request->email;
-        echo "City ".$request->city;
+    //    echo "<br>";
+    //     echo "Name ".$request->username;
+    //     echo "Email ".$request->email;
+    //     echo "City ".$request->city;
+        $request->validate([
+            'username' => 'required |min:3|max:10',
+            'email' => 'required    |email',
+            'city' => 'required |min:3|max:10',
+            'skill' => 'required']);
 
        
         
@@ -45,6 +50,7 @@ class UserController extends Controller
         echo "gender ".$request->gender;
         echo "City ".$request->city;
         print_r($request->skill);
+        
         return $request;
        
     }
