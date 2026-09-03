@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Rules\Uppercase;
 
 class UserController extends Controller
 {
@@ -37,7 +38,7 @@ class UserController extends Controller
         $request->validate([
             'username' => 'required |min:3|max:10',
             'email' => 'required    |email',
-            'city' => 'required |min:3|max:10|  Uppercase',
+            'city' => ['required', new Uppercase],
             'skill' => 'required']
         ,[
             'username.required' => 'Please enter your name',
