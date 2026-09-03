@@ -37,8 +37,19 @@ class UserController extends Controller
         $request->validate([
             'username' => 'required |min:3|max:10',
             'email' => 'required    |email',
-            'city' => 'required |min:3|max:10',
-            'skill' => 'required']);
+            'city' => 'required |min:3|max:10|  Uppercase',
+            'skill' => 'required']
+        ,[
+            'username.required' => 'Please enter your name',
+            'username.min' => 'Name should be minimum 3 characters',
+            'username.max' => 'Name should be maximum 10 characters',
+            'email.required' => 'Please enter your email',
+            'email.email' => 'Please enter a valid email',
+            'city.required' => 'Please enter your city',
+            'city.min' => 'City should be minimum 3 characters',
+            'city.max' => 'City should be maximum 10 characters',
+            'skill.required' => 'Please select at least one skill'
+        ]);
 
        
         
