@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,22 +73,32 @@ Route::get('/', function () {
 
 
 // create the user form
- Route::view('/user-form', 'user-form');
+//  Route::view('/user-form', 'user-form');
 
-  Route::view('/student-form', 'student-form');
+//   Route::view('/student-form', 'student-form');
 
  // create add user path 
 
- Route::post('add-user',[UserController::class,'addUser']);
+//  Route::post('add-user',[UserController::class,'addUser']);
 
- Route::post('add-student-user',[UserController::class,'addStudentUser']);
+//  Route::post('add-student-user',[UserController::class,'addStudentUser']);
 
  // creaate for study perpose only
-  Route::view('/test-route/home', 'test-route.home');
+  Route::view('/test-route/home', 'test-route.home')->name('home');
   Route::view('/test-route/about', 'test-route.about');
   Route::view('/test-route/welcome', 'test-route.welcome');
   Route::view('/test-route/user', 'test-route.home');
 
   Route::view('/test-route/user/{name}', 'test-route.home');
+
+// create a route for short url name
+  Route::view('/test-route/shorturlname', 'test-route.shorturlname')->name('shorturlname');
+
+  Route::get('show',[HomeController::class,'show']);
+ // Route::get('user',[HomeController::class,'username']);
+
+  Route::get('user/{name}', [HomeController::class, 'username'])->name('user');
+
+    
 
 
