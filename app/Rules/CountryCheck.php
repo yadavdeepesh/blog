@@ -25,7 +25,10 @@ class CountryCheck implements Rule
      */
     public function passes($attribute, $value)
     {
-        //
+        if($value === 'India'){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -35,6 +38,6 @@ class CountryCheck implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'The :attribute must be India.';
     }
 }

@@ -82,4 +82,12 @@ Route::get('/', function () {
 
  Route::post('add-student-user',[UserController::class,'addStudentUser']);
 
+ // creaate for study perpose only
+  Route::view('/test-route/home', 'test-route.home');
+  Route::view('/test-route/about', 'test-route.about');
+  Route::view('/test-route/welcome', 'test-route.welcome');
+  Route::view('/test-route/user', 'test-route.home');
+
+  Route::view('/test-route/user/{name}', 'test-route.home');
+
 
