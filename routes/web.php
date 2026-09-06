@@ -6,6 +6,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 use App\Http\Middleware\AgeCheck;
+use App\Http\Middleware\CountryCheck;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -144,5 +145,21 @@ Route::get('/', function () {
   })->middleware('agecheck');
 
 
+// create a route for the middleware with group way one middleware
+  // Route::middleware(['agecheck', 'countrycheck'])->group(function () {
+  //     Route::get('/middleware', function () {
+  //         return view('middleware');
+  //     });
+  // });
 
+  // create a route for the middleware with group way two middleware
+  Route::middleware(['usercheck'])->group(function () {
+      Route::get('/middleware', function () {
+          return view('middleware');
+      });
+
+      Route::get('/dashboard', function () {
+          return "Dashboard Page";
+      });
+  });
 

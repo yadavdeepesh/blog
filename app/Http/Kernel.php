@@ -44,6 +44,11 @@ class Kernel extends HttpKernel
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
+        'usercheck' => [
+            'agecheck',
+            'countrycheck',
+        ],
     ];
 
     /**
@@ -64,6 +69,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'agecheck' => \App\Http\Middleware\AgeCheck::class,
+        'countrycheck' => \App\Http\Middleware\CountryCheck::class,
 
     ];
 }

@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class AgeCheck
+class CountryCheck
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,10 @@ class AgeCheck
     public function handle(Request $request, Closure $next)
     {
         // return $next($request);
-        // echo "<pre>";
-        // echo "This is the age check middleware. Your age is: " . $request. "<br>";
-        echo "This is the age check middleware. Your age is: " . $request->age . "<br>";
-        if ($request->age < 18) {
-            echo "You are not allowed to access this page. Your age is: " . $request->age;
+        echo "This is the country check middleware. Your country is: " . $request->country . "<br>";
+         $country = $request->country;
+
+        if ($country != 'India') {
             // return redirect('/home');
         }
 
