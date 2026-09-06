@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StudentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +27,7 @@ Route::get('/', function () {
 
 // create a route for short way 
 // Route::view('/home', 'home');
+
 
 // passed the data to the view
 // Route::get('/about', function () {
@@ -95,10 +97,47 @@ Route::get('/', function () {
   Route::view('/test-route/shorturlname', 'test-route.shorturlname')->name('shorturlname');
 
   Route::get('show',[HomeController::class,'show']);
- // Route::get('user',[HomeController::class,'username']);
+    // Route::get('user',[HomeController::class,'username']);
 
   Route::get('user/{name}', [HomeController::class, 'username'])->name('user');
 
     
+
+//   create a route for the user page
+  Route::view('/home/profile/user', 'home')->name('hm');
+
+  // create a route for study prefix
+//   Route::view('student/home', 'student.home');
+//   Route::get('student/show', [StudentController::class, 'show']);
+//   Route::get('student/add', [StudentController::class, 'add']);
+
+//   create a pregix route for the student page single prefix route for the student page
+  // Route::prefix('student')->group(function () {
+  //   Route::view('home', 'student.home');
+  //   Route::get('show', [StudentController::class, 'show']);
+  //   Route::get('add', [StudentController::class, 'add']);
+  // });
+
+  //   create a pregix route for the student page double prefix route for the student page
+  //   Route::prefix('student/india')->group(function () {
+  //   Route::view('home', 'student.home');
+  //   Route::get('show', [StudentController::class, 'show']);
+  //   Route::get('add', [StudentController::class, 'add']);
+  // });
+
+  // route for controller with group prefix
+
+  Route::controller(StudentController::class)->prefix('student')->group(function () {
+    Route::view('home', 'student.home');
+    Route::get('show', 'show');
+    Route::get('add', 'add');
+    Route::get('delete', 'delete');
+    Route::get('show/{name}','showName');
+  });
+
+  // Route::get('student/show/{name}', [StudentController::class, 'showName']);
+
+
+
 
 
