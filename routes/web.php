@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
+use App\Http\Middleware\AgeCheck;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -137,6 +138,10 @@ Route::get('/', function () {
 
   // Route::get('student/show/{name}', [StudentController::class, 'showName']);
 
+  // crete a route for the middleware
+  Route::get('/middleware', function () {
+      return view('middleware');
+  })->middleware('agecheck');
 
 
 
